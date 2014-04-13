@@ -32,15 +32,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * The two possible segments, represented as special terminal nodes in the graph.
- */
-public enum Terminal {
-
-	FOREGROUND, // a.k.a. the source
-	BACKGROUND; // a.k.a. the sink
-}
-
-/**
  * Class implementing the grach cut algorithm.
  */
 public class GraphCut {
