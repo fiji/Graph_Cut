@@ -1,5 +1,17 @@
 package graphcut;
 
+import fiji.util.gui.OverlayedImageCanvas;
+import ij.IJ;
+import ij.ImagePlus;
+import ij.ImageStack;
+import ij.WindowManager;
+import ij.gui.GenericDialog;
+import ij.gui.ImageWindow;
+import ij.io.FileInfo;
+import ij.plugin.PlugIn;
+import ij.process.ImageProcessor;
+import ij.process.LUT;
+
 import java.awt.AlphaComposite;
 import java.awt.Component;
 import java.awt.Composite;
@@ -10,7 +22,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.Rectangle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -20,12 +31,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.io.File;
-
 import java.util.Arrays;
 import java.util.Vector;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,32 +45,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import fiji.util.gui.OverlayedImageCanvas;
-
-import ij.IJ;
-import ij.ImagePlus;
-import ij.ImageStack;
-import ij.WindowManager;
-
-import ij.gui.GenericDialog;
-import ij.gui.ImageWindow;
-
-import ij.io.FileInfo;
-
-import ij.plugin.PlugIn;
-
-import ij.process.ImageProcessor;
-import ij.process.LUT;
-
 import mpicbg.imglib.cursor.LocalizableByDimCursor;
-
 import mpicbg.imglib.image.Image;
 import mpicbg.imglib.image.ImagePlusAdapter;
-
 import mpicbg.imglib.type.numeric.RealType;
 
 /**
