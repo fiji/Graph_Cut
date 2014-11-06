@@ -18,6 +18,25 @@
 	<name>plugins/Graph_Cut.jar</name>
 	<description></description>
 
+	<scm>
+		<connection>scm:git:git://github.com/fiji/Graph_Cut</connection>
+		<developerConnection>scm:git:git@github.com:fiji/Graph_Cut</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/fiji/Graph_Cut</url>
+	</scm>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>http://jenkins.imagej.net/job/Graph_Cut/</url>
+	</ciManagement>
+
+	<repositories>
+		<!-- NB: for project parent -->
+		<repository>
+			<id>imagej.public</id>
+			<url>http://maven.imagej.net/content/groups/public</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<!-- FIXME: SNAPSHOT dependencies -->
 		<dependency>
@@ -44,25 +63,5 @@
 			<artifactId>ij</artifactId>
 		</dependency>
 	</dependencies>
-
-	<ciManagement>
-		<system>Jenkins</system>
-		<url>http://jenkins.imagej.net/job/Graph_Cut/</url>
-	</ciManagement>
-
-	<scm>
-		<connection>scm:git:git://github.com/fiji/Graph_Cut</connection>
-		<developerConnection>scm:git:git@github.com:fiji/Graph_Cut</developerConnection>
-		<tag>HEAD</tag>
-		<url>https://github.com/fiji/Graph_Cut</url>
-	</scm>
-
-	<repositories>
-		<!-- NB: for project parent -->
-		<repository>
-			<id>imagej.public</id>
-			<url>http://maven.imagej.net/content/groups/public</url>
-		</repository>
-	</repositories>
 
 </project>
