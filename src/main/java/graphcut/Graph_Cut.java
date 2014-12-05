@@ -48,7 +48,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import net.imglib2.Localizable;
+import net.imglib2.Cursor;
 import net.imglib2.RandomAccess;
 import net.imglib2.img.ImagePlusAdapter;
 import net.imglib2.img.Img;
@@ -777,8 +777,7 @@ public class Graph_Cut<T extends RealType<T> & NativeType<T>> implements PlugIn
 		}
 
 		// setup imglib cursors
-		RandomAccess<T> cursor = image.randomAccess();
-		RandomAccess<T> edgeCursor = null;
+		Cursor<T> cursor = image.localizingCursor();
 		long[] imagePosition = new long[dimensions.length];
 
 		// create a new graph cut instance
@@ -869,16 +868,23 @@ public class Graph_Cut<T extends RealType<T> & NativeType<T>> implements PlugIn
 		}
 
 		IJ.log("Setting edge weights to " + pottsWeight + "...");
+		RandomAccess<T> edgeCursor     = null;
+		RandomAccess<T> neighborCursor = null;
 		if (edge != null) {
 			IJ.log("   (under consideration of edge image with weight " + edgeWeight + ")");
-			if (implicitEdgeWeights)
-				cursor = edgeImage.randomAccess();
-			else {
-				cursor     = image.randomAccess();
-				edgeCursor = edgeImage.randomAccess();
+			if (implicitEdgeWeights) {
+				cursor         = edgeImage.localizingCursor();
+				neighborCursor = edgeImage.randomAccess();
+			} else {
+				cursor         = image.localizingCursor();
+				neighborCursor = image.randomAccess();
+				edgeCursor     = edgeImage.randomAccess();
 			}
-		} else
-			cursor = image.randomAccess();
+		} else {
+
+			cursor         = image.localizingCursor();
+			neighborCursor = image.randomAccess();
+		}
 
 		long[] neighborPosition = new long[dimensions.length];
 		long[] edgePosition     = new long[dimensions.length];
@@ -914,8 +920,8 @@ A:			for (int i = 0; i < neighborPositions.length; i++) {
 
 					if (implicitEdgeWeights) {
 
-						cursor.setPosition(neighborPosition);
-						float neighborValue = cursor.get().getRealFloat();
+						neighborCursor.setPosition(neighborPosition);
+						float neighborValue = neighborCursor.get().getRealFloat();
 
 						// TODO:
 						// cache neighbor distances
@@ -942,8 +948,6 @@ A:			for (int i = 0; i < neighborPositions.length; i++) {
 				graphCut.setEdgeWeight(nodeNum, neighborNum, weight);
 				e++;
 			}
-
-			cursor.setPosition(imagePosition);
 		}
 		end = System.currentTimeMillis();
 		IJ.log("...done inserting " + e + " edges. (" + (end - start) + "ms)");
@@ -958,20 +962,20 @@ A:			for (int i = 0; i < neighborPositions.length; i++) {
 		Img<T> segmentation = ImagePlusAdapter.wrap(seg);
 
 		// create segmentation image
-		Localizable<T> segCursor = segmentation.localizingCursor();
+		Cursor<T> segCursor = segmentation.localizingCursor();
 		imagePosition = new long[dimensions.length];
 		while (segCursor.hasNext()) {
 
 			segCursor.fwd();
 
-			segCursor.getPosition(imagePosition);
+			segCursor.localize(imagePosition);
 
 			int nodeNum = listPosition(imagePosition, dimensions);
 
 			if (graphCut.getTerminal(nodeNum) == Terminal.FOREGROUND)
-				segCursor.get().set(255.0);
+				segCursor.get().setReal(255.0);
 			else
-				segCursor.get().set(0.0);
+				segCursor.get().setReal(0.0);
 		}
 	}
 
