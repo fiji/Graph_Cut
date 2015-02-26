@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>Graph_Cut</artifactId>
-	<version>0.2.2-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<name>plugins/Graph_Cut.jar</name>
 	<description />
@@ -18,7 +18,7 @@
 	<scm>
 		<connection>scm:git:git://github.com/fiji/Graph_Cut</connection>
 		<developerConnection>scm:git:git@github.com:fiji/Graph_Cut</developerConnection>
-		<tag>HEAD</tag>
+		<tag>Graph_Cut-1.0.0</tag>
 		<url>https://github.com/fiji/Graph_Cut</url>
 	</scm>
 	<ciManagement>
