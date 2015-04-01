@@ -11,6 +11,7 @@ import ij.io.FileInfo;
 import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
 import ij.process.LUT;
+import ij.process.StackStatistics;
 
 import java.awt.AlphaComposite;
 import java.awt.Component;
@@ -724,6 +725,9 @@ public class Graph_Cut<T extends RealType<T> & NativeType<T>> implements PlugIn
 	public void processSingleChannelImage(ImagePlus imp, ImagePlus edge, float dataWeight, float pottsWeight, float edgeWeight, ImagePlus seg) {
 
 		float maxValue     = (float)Math.pow(2, imp.getBitDepth());
+		if (imp.getBitDepth() == 32) {
+			maxValue = (float) new StackStatistics(imp).max;
+		}
 		Img<T> image     = ImagePlusAdapter.wrap(imp);
 		Img<T> edgeImage = null;
 		if (edge != null)
