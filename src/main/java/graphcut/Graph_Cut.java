@@ -701,6 +701,7 @@ public class Graph_Cut<T extends RealType<T> & NativeType<T>> implements PlugIn
 
 		ImagePlus seg = IJ.createImage(imp.getTitle() + " GraphCut segmentation", "8-bit",
 		                               width, height, zslices);
+		seg.setCalibration(imp.getCalibration());
 
 		// fill it with the segmentation
 		processSingleChannelImage(imp, edge, dataWeight, pottsWeight, edgeWeight, seg);
