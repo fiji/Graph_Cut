@@ -130,5 +130,4 @@
 			<artifactId>imglib2-ij</artifactId>
 		</dependency>
 	</dependencies>
-
 </project>
