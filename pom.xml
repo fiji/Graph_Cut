@@ -105,8 +105,8 @@
 		<url>https://github.com/fiji/Graph_Cut/issues</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Jenkins</system>
-		<url>http://jenkins.imagej.net/job/Graph_Cut/</url>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/fiji/Graph_Cut</url>
 	</ciManagement>
 
 	<properties>
