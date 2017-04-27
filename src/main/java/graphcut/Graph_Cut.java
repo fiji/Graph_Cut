@@ -82,7 +82,7 @@ import net.imglib2.type.numeric.RealType;
 /**
  * Plugin interface to the graph cut algorithm.
  *
- * @author Jan Funke <jan.funke@inf.tu-dresden.de>
+ * @author Jan Funke
  * @version 0.1
  */
 public class Graph_Cut<T extends RealType<T> & NativeType<T>> implements PlugIn

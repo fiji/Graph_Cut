@@ -306,7 +306,7 @@ public class GraphCut {
 	 * specified node. If there are several min-cut solutions, free nodes are
 	 * assigned to the background.
 	 *
-	 * @param nodeId the node to check
+	 * @param node the node to check
 	 * @return Either <tt>Terminal.FOREGROUND</tt> or
 	 *         <tt>Terminal.BACKGROUND</tt>
 	 */
@@ -346,7 +346,7 @@ public class GraphCut {
 	 * A node has to be considered changed if any of its adjacent edges changed
 	 * its weight.
 	 *
-	 * @param nodeId The node that changed.
+	 * @param node The node that changed.
 	 */
 	public void markNode(int node) {
 
