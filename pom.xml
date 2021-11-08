@@ -95,7 +95,7 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/fiji/Graph_Cut</connection>
+		<connection>scm:git:https://github.com/fiji/Graph_Cut</connection>
 		<developerConnection>scm:git:git@github.com:fiji/Graph_Cut</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/fiji/Graph_Cut</url>
