@@ -51,7 +51,7 @@ import javax.swing.event.ChangeListener;
 
 import net.imglib2.Cursor;
 import net.imglib2.RandomAccess;
-import net.imglib2.img.ImagePlusAdapter;
+import net.imglib2.imagej.ImageJFunctions;
 import net.imglib2.img.Img;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
@@ -729,10 +729,10 @@ public class Graph_Cut<T extends RealType<T> & NativeType<T>> implements PlugIn
 		if (imp.getBitDepth() == 32) {
 			maxValue = (float) new StackStatistics(imp).max;
 		}
-		Img<T> image     = ImagePlusAdapter.wrap(imp);
+		Img<T> image     = ImageJFunctions.wrap(imp);
 		Img<T> edgeImage = null;
 		if (edge != null)
-			edgeImage = ImagePlusAdapter.wrap(edge);
+			edgeImage = ImageJFunctions.wrap(edge);
 
 		// get some statistics
 		long[] dimensions = new long[image.numDimensions()];
@@ -964,7 +964,7 @@ A:			for (int i = 0; i < neighborPositions.length; i++) {
 		end = System.currentTimeMillis();
 		IJ.log("...done. Max flow is " + maxFlow + ". (" + (end - start) + "ms)");
 
-		Img<T> segmentation = ImagePlusAdapter.wrap(seg);
+		Img<T> segmentation = ImageJFunctions.wrap(seg);
 
 		// create segmentation image
 		Cursor<T> segCursor = segmentation.localizingCursor();
